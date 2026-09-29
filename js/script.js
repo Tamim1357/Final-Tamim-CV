@@ -1,28 +1,102 @@
 const header = document.querySelector("header");
+const menuIcon = document.querySelector("#menu-icon");
+const navbar = document.querySelector(".navbar");
 
-window.addEventListener ("scroll", function() {
-    header.classList.toggle ("sticky", window.scrollY >0);
+
+// =========================================
+// STICKY HEADER
+// =========================================
+
+window.addEventListener("scroll", function () {
+
+    if (window.scrollY > 50) {
+
+        header.classList.add("sticky");
+
+    } else {
+
+        header.classList.remove("sticky");
+
+    }
+
 });
 
-let menu = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
 
-menu.onclick = () => {
-    menu.classList.toggle('bx-x');
-    navbar.classList.toggle('active');
-};
+// =========================================
+// MOBILE MENU
+// =========================================
 
-window.onscroll = () => {
-    menu.classList.remove('bx-x');
-    navbar.classList.remove('active');
-};
+menuIcon.addEventListener("click", function () {
 
-const sr = ScrollReveal ({
-    distance: '25px',
-    duration: 250,
-    reset: true
-})
+    navbar.classList.toggle("active");
 
-sr.reveal('.home-text',{delay:190, origin:'bottom'})
+    const menuIsOpen =
+        navbar.classList.contains("active");
 
-sr.reveal('.about,.services,.portfolio,.contact',{delay:200, origin:'bottom'})
+    menuIcon.setAttribute(
+        "aria-expanded",
+        menuIsOpen
+    );
+
+});
+
+
+// =========================================
+// CLOSE MENU
+// =========================================
+
+const navLinks =
+    document.querySelectorAll(".navbar a");
+
+navLinks.forEach(function (link) {
+
+    link.addEventListener("click", function () {
+
+        navbar.classList.remove("active");
+
+        menuIcon.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    });
+
+});
+
+
+// =========================================
+// SCROLL ANIMATION
+// =========================================
+
+const animatedElements =
+    document.querySelectorAll(
+        ".section-title, .about-container, .skill-card, .timeline-item, .interest-card, .contact-container"
+    );
+
+
+const observer =
+    new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+
+animatedElements.forEach(function (element) {
+
+    observer.observe(element);
+
+});

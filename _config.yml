@@ -1,0 +1,11 @@
+title: "Tamim Siddique | HTX Portfolio"
+
+description: "Tamim Siddique er 2.g HTX-elev med interesse for IT, programmering, webudvikling og cybersikkerhed."
+
+url: "https://tamim1357.github.io"
+
+baseurl: "/Final-Tamim-CV"
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap

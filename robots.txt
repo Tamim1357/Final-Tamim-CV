@@ -1,0 +1,5 @@
+User-agent: *
+
+Allow: /
+
+Sitemap: https://tamim1357.github.io/Final-Tamim-CV/sitemap.xml
